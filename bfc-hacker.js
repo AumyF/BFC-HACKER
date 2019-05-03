@@ -1,16 +1,18 @@
 // ==UserScript==
 // @name             BFC-HACKER
 // @name:ja          BFC-HACKER
+// @name:en          BFC-HACKER
 // @namespace        https://github.com/mominisjapan
-// @version          1m.0
+// @version          1m.1
 // @description:ja   bestfriendsのハッカー絵文字を簡単に入力しよう
-// @description:     a tool to toot "Hacker Emoji" easier for best-friends.chat
+// @description:en   a tool to toot "Hacker Emoji" easier for best-friends.chat
+// @description   a tool to toot "Hacker Emoji" easier for best-friends.chat
 // @author           Mominis
 // @match            https://best-friends.chat/*
 // @grant            none
 // @run-at           document-end
 // ==/UserScript==
-const version = "1m.0";
+const version = "1m.1";
 window.onload = () => {
     console.log(`BFC-HACKER ${version}\nBy Mominis(mn@best-friends.chat)`);
     const elm = document.createElement('button');
