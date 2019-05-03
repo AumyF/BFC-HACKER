@@ -2,7 +2,7 @@
 // @name             BFC-HACKER
 // @name:ja          BFC-HACKER
 // @namespace        https://github.com/mominisjapan
-// @version          2
+// @version          3
 // @description      a tool to toot "Hacker Emoji" easier for best-friends.chat
 // @description:ja   best-friends.chatのハッカー絵文字を簡単に入力
 // @author           Mominis
