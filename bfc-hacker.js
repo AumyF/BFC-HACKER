@@ -1,6 +1,6 @@
 // ==UserScript==
-// @name             BFC-HACKER midnight
-// @name:ja          BFC-HACKER midnight
+// @name             BFC-HACKER
+// @name:ja          BFC-HACKER
 // @namespace        https://github.com/mominisjapan
 // @version          2
 // @description      a tool to toot "Hacker Emoji" easier for best-friends.chat
