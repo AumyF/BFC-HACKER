@@ -10,7 +10,7 @@
 // @grant            none
 // @run-at           document-end
 // ==/UserScript==
-const version = "2";
+const version = "3";
 window.onload = () => {
     console.log(`BFC-HACKER ${version}\nBy Mominis(mn@best-friends.chat)`);
     const elm = document.createElement('button');
