@@ -1,12 +1,12 @@
 // ==UserScript==
-// @name             BFC-HACKER
-// @name:ja          BFC-HACKER
-// @name:en          BFC-HACKER
+// @name             BFC-HACKER midnight
+// @name:ja          BFC-HACKER midnight
+// @name:en          BFC-HACKER midnight
 // @namespace        https://github.com/mominisjapan
 // @version          1m.1
-// @description:ja   bestfriendsのハッカー絵文字を簡単に入力しよう
+// @description      a tool to toot "Hacker Emoji" easier for best-friends.chat
+// @description:ja   best-friends.chatのハッカー絵文字を簡単に入力
 // @description:en   a tool to toot "Hacker Emoji" easier for best-friends.chat
-// @description   a tool to toot "Hacker Emoji" easier for best-friends.chat
 // @author           Mominis
 // @match            https://best-friends.chat/*
 // @grant            none
