@@ -59,7 +59,7 @@ const sift = (str) => {
             //latin small, "abcdefghijklmnopqrstuvwxyz"
             console.log('BFC-HACKER:LATIN SMALL LETTER A~Z, No.'+i);
             needsSpaceBefore = true
-            hack[i] = `${space()}:hacker_${str}:`;
+            hack[i] = `${space()}:hacker_${str[i]}:`;
         }else if(str.codePointAt(i) == 0x20){
             //space, " " => ideographic space, "　" (全角スペース)
             console.log('BFC-HACKER:SPACE, No.'+i);
@@ -68,7 +68,7 @@ const sift = (str) => {
         }else{
             console.log('BFC-HACKER:Other charactor, No.'+i);
             needsSpaceBefore = true;
-            hack[i] = `${space()}${str}`;
+            hack[i] = `${space()}${str[i]}`;
         }
     }
     return hack;
