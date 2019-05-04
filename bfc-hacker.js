@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name             BFC-HACKER midnight
 // @namespace        https://github.com/mominisjapan
-// @version          4m.2
+// @version          4m.3
 // @description      best-friends.chatのハッカー絵文字を簡単に入力
 // @author           Mominis
 // @match            https://best-friends.chat/*
 // @grant            none
 // @run-at           document-end
 // ==/UserScript==
-const version = "4m.2";
+const version = "4m.3";
 window.onload = () => {
     console.log(`BFC-HACKER ${version}\nBy Mominis(mn@best-friends.chat)`);
     const elm = document.createElement('button');
