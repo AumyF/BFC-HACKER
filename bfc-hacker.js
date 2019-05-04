@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name             BFC-HACKER midnight
 // @namespace        https://github.com/mominisjapan
-// @version          4m
+// @version          4m.1
 // @description      best-friends.chatのハッカー絵文字を簡単に入力
 // @author           Mominis
 // @match            https://best-friends.chat/*
 // @grant            none
 // @run-at           document-end
 // ==/UserScript==
-const version = "4m";
+const version = "4m.1";
 window.onload = () => {
     console.log(`BFC-HACKER ${version}\nBy Mominis(mn@best-friends.chat)`);
     const elm = document.createElement('button');
@@ -16,7 +16,7 @@ window.onload = () => {
     elm.style = `background-color:#000000;color:#FFFFFF;font-weight:bolder;font-style:italic;width:100%;font-size:200%;`;
     elm.onclick = `toHacker(document.getElementsByClassName('autosuggest-textarea__textarea')[0].innerText)`;
     document.getElementsByClassName('compose-form')[0].appendChild(elm);
-    elm.addEventListener('click',sift);
+    elm.addEventListener('click',hacking);
 }
 /*
 const nanka = (str,i) => {
@@ -45,8 +45,13 @@ const toHacker = () => {
     tar.value = ret.join('');
 };
 */
+const hacking = () => {
+    textarea = document.getElementsByClassName('autosuggest-textarea__textarea')[0]
+    textarea.value = sift(textarea.innerHTML.toLowerCase()).join('');
+}
+
 let needsSpaceBefore = false;
-const sift = (str,i) => {
+const sift = (str) => {
     needsSpaceBefore = false;
     hack = [];
     for(let i=0;i!=str.length;i++){
