@@ -1,16 +1,14 @@
 // ==UserScript==
 // @name             BFC-HACKER
-// @name:ja          BFC-HACKER
 // @namespace        https://github.com/mominisjapan
-// @version          3
-// @description      a tool to toot "Hacker Emoji" easier for best-friends.chat
-// @description:ja   best-friends.chatのハッカー絵文字を簡単に入力
+// @version          4
+// @description      best-friends.chatのハッカー絵文字を簡単に入力
 // @author           Mominis
 // @match            https://best-friends.chat/*
 // @grant            none
 // @run-at           document-end
 // ==/UserScript==
-const version = "3";
+const version = "4";
 window.onload = () => {
     console.log(`BFC-HACKER ${version}\nBy Mominis(mn@best-friends.chat)`);
     const elm = document.createElement('button');
@@ -18,25 +16,41 @@ window.onload = () => {
     elm.style = `background-color:#000000;color:#FFFFFF;font-weight:bolder;font-style:italic;width:100%;font-size:200%;`;
     elm.onclick = `toHacker(document.getElementsByClassName('autosuggest-textarea__textarea')[0].innerText)`;
     document.getElementsByClassName('compose-form')[0].appendChild(elm);
-    elm.addEventListener('click',toHacker);
+    elm.addEventListener('click',hacking);
+}
+const hacking = () => {
+    let textarea = document.getElementsByClassName('autosuggest-textarea__textarea')[0]
+    textarea.value = sift(textarea.innerHTML.toLowerCase()).join('');
 }
 
-const nanka = (str,i) => {
-    if(str.codePointAt(0) >= 97 && str.codePointAt(0) <= 122){
-        console.log('small latin'+i);
-        return `:hacker_${str}: `;
-    }else{
-        console.log('not small latin'+i);
-        return str;
-    }
-};
-const toHacker = () => {
-    const tar = document.getElementsByClassName('autosuggest-textarea__textarea')[0],
-          str = tar.innerHTML.toLowerCase();
-    let ret = [];
+let needsSpaceBefore = false;
+const sift = (str) => {
+    needsSpaceBefore = false;
+    let hack = [];
     for(let i=0;i!=str.length;i++){
-        ret[i] = nanka(str[i],i);
+        if(str.codePointAt(i) >= 0x61 && str.codePointAt(i) <= 0x7a){
+            //latin small, "abcdefghijklmnopqrstuvwxyz"
+            console.log('BFC-HACKER:LATIN SMALL LETTER A~Z, No.'+i);
+            needsSpaceBefore = true
+            hack[i] = `${space()}:hacker_${str[i]}:`;
+        }else if(str.codePointAt(i) == 0x20){
+            //space, " " => ideographic space, "　" (全角スペース)
+            console.log('BFC-HACKER:SPACE, No.'+i);
+            needsSpaceBefore = false;
+            hack[i] = `　`;
+        }else{
+            console.log('BFC-HACKER:Other charactor, No.'+i);
+            needsSpaceBefore = true;
+            hack[i] = `${space()}${str[i]}`;
+        }
     }
-    console.log(str);
-    tar.value = ret.join('');
+    return hack;
 };
+
+const space = () => {
+    if(needsSpaceBefore){
+        return `\u200b`;//ZERO WIDTH SPACE
+    }else{
+        return ``;
+    }
+}
