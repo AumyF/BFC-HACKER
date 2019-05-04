@@ -1,14 +1,14 @@
 // ==UserScript==
-// @name             BFC-HACKER midnight
+// @name             BFC-HACKER
 // @namespace        https://github.com/mominisjapan
-// @version          4m.3
+// @version          4
 // @description      best-friends.chatのハッカー絵文字を簡単に入力
 // @author           Mominis
 // @match            https://best-friends.chat/*
 // @grant            none
 // @run-at           document-end
 // ==/UserScript==
-const version = "4m.3";
+const version = "4";
 window.onload = () => {
     console.log(`BFC-HACKER ${version}\nBy Mominis(mn@best-friends.chat)`);
     const elm = document.createElement('button');
@@ -18,33 +18,6 @@ window.onload = () => {
     document.getElementsByClassName('compose-form')[0].appendChild(elm);
     elm.addEventListener('click',hacking);
 }
-/*
-const nanka = (str,i) => {
-    if(str.codePointAt(0) >= 0x61 && str.codePointAt(0) <= 0x7a){
-        //LATIN SMALL LETTER A~Z
-        console.log('BFC-HACKER:LATIN SMALL LETTER A~Z, No.'+i);
-        return `:hacker_${str}: `;
-    }else if(str.codePointAt(0) == 0x20){
-        //SPACE => IDEOGRAPHIC SPACE,いわゆる全角スペース
-        console.log('BFC-HACKER:SPACE, '+i);
-        return `　`;
-    }
-    else{
-        console.log('BFC-HACKER:Other charactor, No.'+i);
-        return str;
-    }
-};
-const toHacker = () => {
-    const tar = document.getElementsByClassName('autosuggest-textarea__textarea')[0],
-          str = tar.innerHTML.toLowerCase();
-    let ret = [];
-    for(let i=0;i!=str.length;i++){
-        ret[i] = nanka(str[i],i);
-    }
-    console.log(str);
-    tar.value = ret.join('');
-};
-*/
 const hacking = () => {
     let textarea = document.getElementsByClassName('autosuggest-textarea__textarea')[0]
     textarea.value = sift(textarea.innerHTML.toLowerCase()).join('');
