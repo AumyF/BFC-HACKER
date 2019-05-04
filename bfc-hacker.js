@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name             BFC-HACKER midnight
 // @namespace        https://github.com/mominisjapan
-// @version          4m.1
+// @version          4m.2
 // @description      best-friends.chatのハッカー絵文字を簡単に入力
 // @author           Mominis
 // @match            https://best-friends.chat/*
 // @grant            none
 // @run-at           document-end
 // ==/UserScript==
-const version = "4m.1";
+const version = "4m.2";
 window.onload = () => {
     console.log(`BFC-HACKER ${version}\nBy Mominis(mn@best-friends.chat)`);
     const elm = document.createElement('button');
@@ -46,14 +46,14 @@ const toHacker = () => {
 };
 */
 const hacking = () => {
-    textarea = document.getElementsByClassName('autosuggest-textarea__textarea')[0]
+    let textarea = document.getElementsByClassName('autosuggest-textarea__textarea')[0]
     textarea.value = sift(textarea.innerHTML.toLowerCase()).join('');
 }
 
 let needsSpaceBefore = false;
 const sift = (str) => {
     needsSpaceBefore = false;
-    hack = [];
+    let hack = [];
     for(let i=0;i!=str.length;i++){
         if(str.codePointAt(i) >= 0x61 && str.codePointAt(i) <= 0x7a){
             //latin small, "abcdefghijklmnopqrstuvwxyz"
