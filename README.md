@@ -1,5 +1,7 @@
 # BFC-HACKER
 Mastodonインスタンス「 [best-friends.chat](https://best-friends.chat/) 」のハッカー絵文字をパレットから打つのが非常に面倒なので作りました
+#### [GreasyFork](https://greasyfork.org/ja/scripts/382420-bfc-hacker)
+#### [GitHubリポジトリ](https://github.com/MominisJapan/BFC-HACKER)
 ## つかいかた
 
 1. トゥート!の下に
@@ -10,5 +12,9 @@ ___HACKER!___
 を押すと:hacker_a: などに変わります
 1. ___トゥート!___
 
-## [GreasyForkのページはこちら](https://greasyfork.org/ja/scripts/382420-bfc-hacker)
-## [GitHubリポジトリ](https://github.com/MominisJapan/BFC-HACKER)
+### 記法について
+* 半角セミコロン(;)で囲まれた文字はHACKER化から除外します、URLを囲むと便利です
+* 変換対象のアルファベットは __小文字__ です。大文字は変換されません
+* :hacker_a:などの絵文字は前後にスペース記号が必要になるので、ゼロ幅スペース(U+200B)を挿入しています
+* 半角スペースはHACKER絵文字に対して小さいので、全角スペース(U+3000)に置換されます
+* 不具合とかあったら[@mn@best-friends.chat](https://best-friends.chat/@mn)にメンションをお願いします
