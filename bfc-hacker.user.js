@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name             BFC-HACKER　midnight
 // @namespace        https://github.com/mominisjapan
-// @version          5m.1
+// @version          5m.2
 // @description      best-friends.chatのハッカー絵文字を簡単に入力
 // @author           Mominis
 // @match            https://best-friends.chat/*
 // @grant            none
 // @run-at           document-end
 // ==/UserScript==
-const version = "5m.1";
+const version = "5m.2";
 window.onload = () => {
     console.log(`BFC-HACKER ${version}\nBy Mominis(mn@best-friends.chat)`);
     const elm = document.createElement('button');
@@ -34,11 +34,11 @@ const sift = (str) => {
             //semicolon
             console.log(`BFC-HACKER:No.${i} is semicolon`);
             if(isBetweenSemicolon){
-                hack[i] = `${space()}${str[i]}`;
+                hack[i] = `${space()}`;
                 needsSpaceBefore = false;
                 isBetweenSemicolon = false;
             }else{
-                hack[i] = `${str[i]}`;
+                hack[i] = ``;
                 needsSpaceBefore = true;
                 isBetweenSemicolon = true;
             }
