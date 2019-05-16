@@ -18,3 +18,8 @@ ___HACKER!___
 * :hacker_a:などの絵文字は前後にスペース記号が必要になるので、ゼロ幅スペース(U+200B)を挿入しています
 * 半角スペースはHACKER絵文字に対して小さいので、全角スペース(U+3000)に置換されます
 * 不具合とかあったら[@mn@best-friends.chat](https://best-friends.chat/@mn)にメンションをお願いします
+
+## ライセンス
+[__Do What The Fuck You Want To Public License (WTFPL)__](http://www.wtfpl.net/)
+
+意訳:_煮ても焼いてもおいしいよ_
