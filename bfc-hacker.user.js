@@ -7,7 +7,7 @@
 // @match            https://best-friends.chat/*
 // @grant            none
 // @run-at           document-end
-// @license          public domain
+// @license          Unlicense
 // ==/UserScript==
 const version = "6m";
 window.onload = () => {
