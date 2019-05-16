@@ -1,27 +1,27 @@
 // ==UserScript==
-// @name             BFC-HACKER
+// @name             BFC-HACKER midnight
 // @namespace        https://github.com/mominisjapan
-// @version          5
-// @description      best-friends.chatのハッカー絵文字を簡単に入力
+// @version          6m
+// @description      best-friends.chatのハッカー絵文字を簡単に入力(beta)
 // @author           Mominis
 // @match            https://best-friends.chat/*
 // @grant            none
 // @run-at           document-end
 // ==/UserScript==
-const version = "5";
+const version = "6m";
 window.onload = () => {
     console.log(`BFC-HACKER ${version}\nBy Mominis(mn@best-friends.chat)`);
     const elm = document.createElement('button');
     elm.innerHTML = `HACKER!`;
     elm.style = `background-color:#000000;color:#FFFFFF;font-weight:bolder;font-style:italic;width:100%;font-size:200%;`;
-    elm.onclick = `toHacker(document.getElementsByClassName('autosuggest-textarea__textarea')[0].innerText)`;
     document.getElementsByClassName('compose-form')[0].appendChild(elm);
-    elm.addEventListener('click',hacking);
-}
-const hacking = () => {
-    let textarea = document.getElementsByClassName('autosuggest-textarea__textarea')[0]
-    textarea.value = sift(textarea.innerHTML).join('');
-}
+    elm.addEventListener('click',()=>{
+        console.log(`---BFC-HACKER:IT'S TIME TO HACK THE WORLD!---`);
+        let textarea = document.getElementsByClassName('autosuggest-textarea__textarea')[0];
+        console.log(textarea.value);
+        textarea.value = sift(textarea.value).join('');
+    });
+};
 
 let needsSpaceBefore = false;
 let isBetweenSemicolon = false;
@@ -32,7 +32,7 @@ const sift = (str) => {
         const charC = str.codePointAt(i);
         if(charC==0x3b){
             //semicolon
-            console.log(`BFC-HACKER:No.${i} is semicolon`);
+            console.log(`BFC-HACKER:No.${i}(${str[i]}) is semicolon`);
             if(isBetweenSemicolon){
                 hack[i] = `${space()}`;
                 needsSpaceBefore = false;
@@ -43,21 +43,21 @@ const sift = (str) => {
                 isBetweenSemicolon = true;
             }
         }else if(isBetweenSemicolon){
-            console.log(`BFC-HACKER:No.${i}(${charC}) is between semicolons`);
+            console.log(`BFC-HACKER:No.${i}(${str[i]}) is between semicolons`);
             hack[i] = str[i];
         }else if(charC >= 0x61 && charC <= 0x7a){
             //latin small, "abcdefghijklmnopqrstuvwxyz"
-            console.log(`BFC-HACKER:No.${i} is LATIN SMALL LETTER a~z`);
+            console.log(`BFC-HACKER:No.${i}(${str[i]}) is LATIN SMALL LETTER a~z`);
             needsSpaceBefore = true
             hack[i] = `${space()}:hacker_${str[i]}:`;
         }else if(charC == 0x20){
             //space, " " => ideographic space, "　" (全角スペース)
-            console.log(`BFC-HACKER:No.${i} is SPACE`);
+            console.log(`BFC-HACKER:No.${i}(${str[i]}) is SPACE`);
             needsSpaceBefore = false;
             hack[i] = `　`;
         }else{
             //semicolon,latin small,spaceのどれでもない
-            console.log(`BFC-HACKER:No.${i} is other charactor`);
+            console.log(`BFC-HACKER:No.${i}(${str[i]}) is other charactor`);
             needsSpaceBefore = true;
             hack[i] = `${space()}${str[i]}`;
         }
@@ -65,10 +65,4 @@ const sift = (str) => {
     return hack;
 };
 
-const space = () => {
-    if(needsSpaceBefore){
-        return `\u200b`;//ZERO WIDTH SPACE
-    }else{
-        return ``;
-    }
-}
+const space = () => needsSpaceBefore?`\u200b`:``;
