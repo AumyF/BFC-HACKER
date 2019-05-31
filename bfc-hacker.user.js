@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name             BFC-HACKER
 // @namespace        https://github.com/mominisjapan
-// @version          7
+// @version          7.1
 // @description      best-friends.chatのハッカー絵文字を簡単に入力
 // @author           Mominis
 // @match            https://best-friends.chat/*
@@ -15,7 +15,7 @@ This work is free. You can redistribute it and/or modify it under the
 terms of the Do What The Fuck You Want To Public License, Version 2,
 as published by Sam Hocevar. See the License.txt file for more details.
 */
-const version = "7";
+const version = "7.1";
 
 window.addEventListener('load', main);
 
@@ -32,8 +32,8 @@ function main() {
 let onClickHackerButton = () => {
     let textarea = document.getElementsByClassName('autosuggest-textarea__textarea')[0];
     if(textarea.value.length > 500){
-        console.warn('BFC-HACKER: …文字列が長すぎです…500文字超えてますよ…?');
-        alert('…文字列が長すぎです…500文字超えてますよ…?\nBFC-HACKERより');
+        console.warn('BFC-HACKER: 文字列が長すぎです…500文字超えてますよ…?');
+        alert('文字列が長すぎです…500文字超えてますよ…?\nBFC-HACKERより');
     }else{
         console.group(`BFC-HACKER: …処理を開始します。変換前の文字列は… ${textarea.value} です。`);
         textarea.value = sift(textarea.value).join('');
@@ -42,10 +42,11 @@ let onClickHackerButton = () => {
     }
 }
 
-let needsSpaceBefore = false;
-let betweenBars = false;
-let betweenColons = false;
 const sift = (str) => {
+    let betweenBars = false;
+    let betweenColons = false;
+    let needsSpaceBefore = false;
+    const space = () => needsSpaceBefore?`\u200b`:``;
     needsSpaceBefore = false;
     let hackedCharsArray = [];
     for(let i=0; i!=str.length; i++) {
@@ -72,7 +73,7 @@ const sift = (str) => {
         }
         else if(charC == 0x3a)
         {
-            console.log(`BFC-HACKER: ${i}番目の文字列(${str[i]})は、コロンでした。`)
+            console.log(`BFC-HACKER: ${i}番目の文字列(${str[i]})はコロンでした。`)
             if(betweenColons)
             {
                 console.log(`BFC-HACKER: コロン囲みを閉じます。以降の文字はHACKER処理されます。`);
@@ -128,4 +129,3 @@ const sift = (str) => {
     return hackedCharsArray;
 };
 
-const space = () => needsSpaceBefore?`\u200b`:``;
