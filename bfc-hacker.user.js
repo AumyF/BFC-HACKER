@@ -46,6 +46,7 @@ const sift = (str) => {
     let betweenBars = false;
     let betweenColons = false;
     let needsSpaceBefore = false;
+    let prevWasOthers = false;
     const space = () => needsSpaceBefore?`\u200b`:``;
     needsSpaceBefore = false;
     let hackedCharsArray = [];
@@ -68,6 +69,7 @@ const sift = (str) => {
                 console.log(`BFC-HACKER: 縦棒囲みを開きます。次の縦棒まで、文字はHACKER処理されません。`);
                 hackedCharsArray[i] = ``;
                 needsSpaceBefore = true;
+                prevWasOthers = true;
                 betweenBars = true;
             }
         }
@@ -86,6 +88,7 @@ const sift = (str) => {
                 console.log(`BFC-HACKER: コロン囲みを開きます。次のコロンまで、文字はHACKER処理されません。`);
                 hackedCharsArray[i] = `:`;
                 needsSpaceBefore = true;
+                prevWasOthers = true;
                 betweenColons = true;
             }
         }
@@ -103,7 +106,8 @@ const sift = (str) => {
         {
             //latin small, "abcdefghijklmnopqrstuvwxyz"
             console.log(`BFC-HACKER: ${i}番目の文字(${str[i]})は、ラテンアルファベット小文字です。HACKER処理されます。`);
-            needsSpaceBefore = true
+            needsSpaceBefore = true;
+            prevWasOthers = false;
             hackedCharsArray[i] = `${space()}:hacker_${str[i]}:`;
         }
         else if(charC == 0x20)
@@ -111,6 +115,7 @@ const sift = (str) => {
             //space, " " => ideographic space, "　" (全角スペース)
             console.log(`BFC-HACKER: ${i}番目の文字(${str[i]})は半角スペースでした。全角スペースに置き換えておきます。`);
             needsSpaceBefore = false;
+            prevWasOthers = true;
             hackedCharsArray[i] = `　`;
         } else if(charC == 0x200b)
         {
@@ -122,12 +127,14 @@ const sift = (str) => {
             //令(CJK互換漢字のF9A8にも入っている)
             console.log(`BFC-HACKER: ${i}番目の文字(${str[i]})は「令」でした。書道します。`);
             needsSpaceBefore = true
+            prevWasOthers = false;
             hackedCharsArray[i] = `${space()}:reiwa_rei:`;
         }else if(charC == 0x548c)
         {
             //和
             console.log(`BFC-HACKER: ${i}番目の文字(${str[i]})は「和」でした。書道します。`);
-            needsSpaceBefore = true
+            needsSpaceBefore = true;
+            prevWasOthers = false;
             hackedCharsArray[i] = `${space()}:reiwa_wa:`;
         }
         else
@@ -135,7 +142,8 @@ const sift = (str) => {
             //semicolon,latin small,spaceのどれでもない
             console.log(`BFC-HACKER: ${i}番目の文字(${str[i]})は対象外の文字でした。もしかして、${['ひらがなで', 'カタカナで', '漢字で', 'キリル文字で', 'ギリシャ文字で', '顔文字にマイナーな文字を使いま'][Math.floor(Math.random() * 6)]}したか？`);
             needsSpaceBefore = true;
-            hackedCharsArray[i] = `${space()}${str[i]}`;
+            prevWasOthers = true;
+            hackedCharsArray[i] = `${!prevWasOthers?space():``}${str[i]}`;
         }
     }
     return hackedCharsArray;
