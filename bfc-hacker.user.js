@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name             BFC-HACKER m
+// @name             BFC-HACKER
 // @namespace        https://github.com/mominisjapan
 // @version          8
 // @description      best-friends.chatのハッカー絵文字を簡単に入力
