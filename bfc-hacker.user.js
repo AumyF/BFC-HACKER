@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name             BFC-HACKER
+// @name             BFC-HACKER m
 // @namespace        https://github.com/mominisjapan
-// @version          7.1
+// @version          8
 // @description      best-friends.chatのハッカー絵文字を簡単に入力
 // @author           Mominis
 // @match            https://best-friends.chat/*
@@ -15,7 +15,7 @@ This work is free. You can redistribute it and/or modify it under the
 terms of the Do What The Fuck You Want To Public License, Version 2,
 as published by Sam Hocevar. See the License.txt file for more details.
 */
-const version = "7.1";
+const version = "8";
 
 window.addEventListener('load', main);
 
@@ -117,6 +117,18 @@ const sift = (str) => {
             // zero width space
             console.log(`BFC-HACKER: ${i}番目の文字(${str[i]})はゼロ幅スペースでした。放っておきます。`);
             hackedCharsArray[i] = str[i];
+        } else if(charC == 0x4ee4 || charC == 0xf9a8)
+        {
+            //令(CJK互換漢字のF9A8にも入っている)
+            console.log(`BFC-HACKER: ${i}番目の文字(${str[i]})は「令」でした。書道します。`);
+            needsSpaceBefore = true
+            hackedCharsArray[i] = `${space()}:reiwa_rei:`;
+        }else if(charC == 0x548c)
+        {
+            //和
+            console.log(`BFC-HACKER: ${i}番目の文字(${str[i]})は「和」でした。書道します。`);
+            needsSpaceBefore = true
+            hackedCharsArray[i] = `${space()}:reiwa_wa:`;
         }
         else
         {
